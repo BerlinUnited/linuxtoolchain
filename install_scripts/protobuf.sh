@@ -20,10 +20,10 @@ if [ "$1" = "check" ]; then
     exit 1
   fi
 elif [ "$1" = "install" ]; then
-  rm -Rf protobuf-2.4.1
-  tar xvzf ../downloads/protobuf-2.4.1.tar.gz
-  cd protobuf-2.4.1
-  ./configure --disable-shared --prefix="$EXTERN_DIR" && make -j4 && make install
+  rm -Rf protobuf-2.6.1
+  tar xvzf ../downloads/protobuf-2.6.1.tar.gz
+  cd protobuf-2.6.1
+  ./configure --disable-shared --prefix="$EXTERN_DIR" && make && make install
   cd ..  
 fi
 

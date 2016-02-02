@@ -50,8 +50,6 @@ echo
 ask_install_package "sfsexp"
 ask_install_package "glib"
 ask_install_package "protobuf"
-ask_install_package "gtest"
-ask_install_package "gmock"
 ask_install_package "opencv"
 
 echo "==========================="
