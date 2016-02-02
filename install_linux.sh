@@ -47,6 +47,7 @@ mkdir -p extracted
 cd extracted
 
 echo
+ask_install_package "eigen"
 ask_install_package "sfsexp"
 ask_install_package "glib"
 ask_install_package "protobuf"
