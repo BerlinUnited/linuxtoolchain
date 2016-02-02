@@ -22,7 +22,7 @@ elif [ "$1" = "install" ]; then
   export CMAKE_LIBRARY_PATH="$EXTERN_DIR/lib"
   export CMAKE_INCLUDE_PATH="$EXTERN_DIR/include"
   rm -Rf opencv-3.0.0
-  tar xvzf ../downloads/opencv-3.1.0.tar.gz
+  tar xvaf ../downloads/opencv-3.1.0.tar.xz
   cd opencv-3.1.0
   rm -Rf build
   mkdir build && cd build
