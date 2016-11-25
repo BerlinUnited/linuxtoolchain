@@ -26,8 +26,7 @@ elif [ "$1" = "install" ]; then
   cd opencv-3.1.0
   rm -Rf build
   mkdir build && cd build
-  cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX="$EXTERN_DIR" -D BUILD_opencv_apps=off -D BUILD_DOCS=off -D BUILD_TESTS=off -D BUILD_opencv_java=off -D BUILD_opencv_python2=off BUILD_opencv_python3=off -D BUILD_PERF_TESTS=off ..
+  cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX="$EXTERN_DIR" -DBUILD_opencv_apps=OFF -D BUILD_DOCS=OFF -DBUILD_TESTS=OFF -DBUILD_opencv_java=OFF -DBUILD_opencv_python2=OFF -DBUILD_opencv_python3=OFF -DBUILD_PERF_TESTS=OFF -DENABLE_PRECOMPILED_HEADERS=OFF  ..
   make && make install
   cd ..  
 fi
-
