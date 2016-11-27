@@ -23,7 +23,6 @@ elif [ "$1" = "install" ]; then
   rm -Rf protobuf-2.6.1
   tar xvzf ../downloads/protobuf-2.6.1.tar.gz
   cd protobuf-2.6.1
-  ./configure --disable-shared --prefix="$EXTERN_DIR" && make && make install
+  ./configure --with-pic --disable-shared --prefix="$EXTERN_DIR" && make && make install
   cd ..  
 fi
-
