@@ -52,6 +52,7 @@ ask_install_package "sfsexp"
 ask_install_package "glib"
 ask_install_package "protobuf"
 ask_install_package "opencv"
+ask_install_package "fftw3"
 
 echo "==========================="
 echo "Selected packages for install:"
