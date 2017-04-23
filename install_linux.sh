@@ -53,6 +53,7 @@ ask_install_package "glib"
 ask_install_package "protobuf"
 ask_install_package "opencv"
 ask_install_package "fftw3"
+ask_install_package "caffe"
 
 echo "==========================="
 echo "Selected packages for install:"
