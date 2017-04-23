@@ -54,6 +54,7 @@ ask_install_package "protobuf"
 ask_install_package "opencv"
 ask_install_package "fftw3"
 ask_install_package "hdf5"
+ask_install_package "atlas"
 ask_install_package "caffe"
 
 echo "==========================="

@@ -11,7 +11,7 @@ fi
 
 
 if [ "$1" = "check" ]; then
-  if [ -d "/usr/include/hdf5" -o -d "$EXTERN_DIR/include/hdf5" ]; then
+  if [ -f "/usr/include/hdf5.h" -o -f "$EXTERN_DIR/include/hdf5.h" ]; then
     echo "n"
     exit 0
   else

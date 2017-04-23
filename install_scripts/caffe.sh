@@ -24,8 +24,10 @@ elif [ "$1" = "install" ]; then
   cd caffe-nao-optimized-caffe
   rm -Rf build
   mkdir build && cd build
-  cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$EXTERN_DIR -DCMAKE_PREFIX_PATH=$EXTERN_DIR -DCPU_ONLY=ON ..
+
+  cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$EXTERN_DIR -DCMAKE_PREFIX_PATH=$EXTERN_DIR -DCPU_ONLY=ON -DUSE_LEVELDB=OFF -DUSE_LMDB=OFF -DBUILD_python=OFF  ..
   make && make install
+
   # install additional libraries needed by Caffe
   cp -R external/gflags-install/* $EXTERN_DIR
   cp -R external/glog-install/* $EXTERN_DIR
