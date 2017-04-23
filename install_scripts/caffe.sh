@@ -25,7 +25,7 @@ elif [ "$1" = "install" ]; then
   rm -Rf build
   mkdir build && cd build
 
-  cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$EXTERN_DIR -DCMAKE_PREFIX_PATH=$EXTERN_DIR -DCPU_ONLY=ON -DUSE_LEVELDB=OFF -DUSE_LMDB=OFF -DBUILD_python=OFF  ..
+  cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$EXTERN_DIR -DCMAKE_PREFIX_PATH=$EXTERN_DIR -DCPU_ONLY=ON -DBUILD_SHARED_LIBS=OFF -DUSE_LEVELDB=OFF -DUSE_LMDB=OFF -DBUILD_python=OFF  ..
   make && make install
 
   # install additional libraries needed by Caffe
