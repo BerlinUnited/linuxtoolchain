@@ -29,10 +29,12 @@ elif [ "$1" = "install" ]; then
   make && make install
 
   # install additional libraries needed by Caffe
-  mkdir -p external/gflags-install/
-  mkdir -p external/glog-install/
-  cp -R external/gflags-install/* $EXTERN_DIR
-  cp -R external/glog-install/* $EXTERN_DIR
-
+  if [ -d external/gflags-install/ ]; then
+    cp -R external/gflags-install/* $EXTERN_DIR
+  fi
+  if [ -d external/glog-install/ ]; then
+    cp -R external/glog-install/* $EXTERN_DIR
+  fi
+ 
   cd ../../
 fi
