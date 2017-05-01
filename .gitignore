@@ -1,7 +1,8 @@
 /extracted
 /include
 /etc
-/bin
+/bin/*
+!/bin/premake4
 /lib
 /share
 /python
