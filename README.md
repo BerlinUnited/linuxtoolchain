@@ -8,9 +8,13 @@ The whole Linux Toolchain setup is about to change at the end of 2017.
 
 
 ## Changelog
-Version 0.5  
+Version 0.6  
 GCC Version 4.9.3  
-Visual Studio 2013  
+Visual Studio 2013 
+
+= Changes from 0.5 =  
+ - added the Whistledetector extra libs to the normal toolchain
+
 
 = Changes from 0.4 =  
  - fixed typo in protobuf version in last changelog  
