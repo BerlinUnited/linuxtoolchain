@@ -55,29 +55,36 @@ if [ "$DEFAULT" = "n" ]; then
   DEFSTRING="[y/N]"
 fi
 
-echo -n "Do you want append NaoTH environment variables to ~/.bashrc? $DEFSTRING : "
-read ANSWER
+# prevent multiple env_var definitions
+if [[ -z "${NAO_CTC}" || -z "${EXTERN_PATH_NATIVE}" ]]; then
 
-# set default answer
-if [ -z "$ANSWER" ]; then 
-  ANSWER=$DEFAULT
+	echo -n "Do you want append NaoTH environment variables to ~/.bashrc? $DEFSTRING : "
+	read ANSWER
+
+	# set default answer
+	if [ -z "$ANSWER" ]; then 
+	  ANSWER=$DEFAULT
+	fi
+
+	if [ "$ANSWER" = "y" -o "$ANSWER" = "Y" ]
+	then
+	  echo "-----------------------"
+	  echo "- extending ~/.bashrc -"
+	  echo "------------------------"
+
+	  echo "export PATH=\${PATH}:$CURR/toolchain_native/extern/bin:$CURR/toolchain_native/extern/lib # NAOTH" >> ~/.bashrc
+	  echo "export NAO_CTC=$CURR/toolchain_nao/ # NAOTH" >> ~/.bashrc
+	  echo "export EXTERN_PATH_NATIVE=$CURR/toolchain_native/extern/ # NAOTH" >> ~/.bashrc
+	fi
+else
+  echo "NaoTH environment variables already defined."
 fi
-
-if [ "$ANSWER" = "y" -o "$ANSWER" = "Y" ]
-then
-  echo "-----------------------"
-  echo "- extending ~/.bashrc -"
-  echo "------------------------"
-
-  echo "export PATH=\${PATH}:$CURR/toolchain_native/extern/bin:$CURR/toolchain_native/extern/lib # NAOTH" >> ~/.bashrc
-  echo "export NAO_CTC=$CURR/toolchain_nao/ # NAOTH" >> ~/.bashrc
-  echo "export EXTERN_PATH_NATIVE=$CURR/toolchain_native/extern/ # NAOTH" >> ~/.bashrc
-fi
-
 
 echo "-----------------------------------"
 echo "- compiling external dependencies -"
 echo "-----------------------------------"
 
 cd toolchain_native/extern/
+# make executeable
+chmod u+x install_linux.sh
 ./install_linux.sh
