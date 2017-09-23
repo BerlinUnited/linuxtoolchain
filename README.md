@@ -1,22 +1,18 @@
-# ExternalDependencies
+# LinuxToolChain 2017
 
 This is part of the native toolchain for Linux. 
-The Ubuntu Toolchains from http://www2.informatik.hu-berlin.de/~naoth/ressources/toolchains/ are
-currently not up to date. The files in this Repository have to replace the ones downloaded.  
-  
-The whole Linux Toolchain setup is about to change at the end of 2017.  
-
 
 ## Changelog
-Version 0.6  
+Version 3.3  
 GCC Version 4.9.3  
-Visual Studio 2013 
+Visual Studio 2013  
 
-= Changes from 0.5 =  
- - added the Whistledetector extra libs to the normal toolchain
+= Changes from 3.2 =  
+ - added premake5
+ - added whistledetector libs
+ - added eigen 3.3.4
 
-
-= Changes from 0.4 =  
+= Changes from 0.3 =  
  - fixed typo in protobuf version in last changelog  
  - recompiled protobuf with Visual Studio 2013 - only replace protoc.exe and protobuf.lib   
    the protobuf-lite.lib is not yet replaced  

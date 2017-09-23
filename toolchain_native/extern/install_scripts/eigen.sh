@@ -18,8 +18,8 @@ if [ "$1" = "check" ]; then
     exit 1
   fi
 elif [ "$1" = "install" ]; then
-  rm -Rf eigen-eigen-67e894c6cd8f
-  tar xvjf ../downloads/eigen-eigen-67e894c6cd8f.tar.bz2
-  cp -R eigen-eigen-67e894c6cd8f/Eigen/ $EXTERN_DIR/include
+  rm -Rf glib-2.26.0
+  tar xvjf ../downloads/eigen-eigen-5a0156e40feb.tar.bz2
+  cp -R eigen-eigen-5a0156e40feb/Eigen/ $EXTERN_DIR/include
 fi
 
