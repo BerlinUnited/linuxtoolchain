@@ -58,7 +58,7 @@ fi
 # prevent multiple env_var definitions
 if [[ -z "${NAO_CTC}" || -z "${EXTERN_PATH_NATIVE}" ]]; then
 
-	echo -n "Do you want append NaoTH environment variables to ~/.bashrc? $DEFSTRING : "
+	echo -n "Do you want append NaoTH environment variables to ~/.profile? $DEFSTRING : "
 	read ANSWER
 
 	# set default answer
@@ -69,12 +69,12 @@ if [[ -z "${NAO_CTC}" || -z "${EXTERN_PATH_NATIVE}" ]]; then
 	if [ "$ANSWER" = "y" -o "$ANSWER" = "Y" ]
 	then
 	  echo "-----------------------"
-	  echo "- extending ~/.bashrc -"
+	  echo "- extending ~/.profile -"
 	  echo "------------------------"
 
-	  echo "export PATH=\${PATH}:$CURR/toolchain_native/extern/bin:$CURR/toolchain_native/extern/lib # NAOTH" >> ~/.bashrc
-	  echo "export NAO_CTC=$CURR/toolchain_nao/ # NAOTH" >> ~/.bashrc
-	  echo "export EXTERN_PATH_NATIVE=$CURR/toolchain_native/extern/ # NAOTH" >> ~/.bashrc
+	  echo "export PATH=\${PATH}:$CURR/toolchain_native/extern/bin:$CURR/toolchain_native/extern/lib # NAOTH" >> ~/.profile
+	  echo "export NAO_CTC=$CURR/toolchain_nao/ # NAOTH" >> ~/.profile
+	  echo "export EXTERN_PATH_NATIVE=$CURR/toolchain_native/extern/ # NAOTH" >> ~/.profile
 	fi
 else
   echo "NaoTH environment variables already defined."
