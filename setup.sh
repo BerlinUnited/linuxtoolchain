@@ -1,13 +1,43 @@
 #!/bin/bash
 
-CURR=`pwd`
-NAO_CTC=$CURR/toolchain_nao/
-EXTERN_PATH_NATIVE=$CURR/toolchain_native/extern/
+if [ -z "$DEFAULT" ]; then DEFAULT="n" ; fi
+DEFSTRING="[Y/n]"
+if [ "$DEFAULT" = "n" ]; then 
+  DEFSTRING="[y/N]"
+fi
+
+# prevent multiple env_var definitions
+if [[ -z "${NAO_CTC}" || -z "${EXTERN_PATH_NATIVE}" ]]; then
+
+    CURR=`pwd`
+    NAO_CTC=$CURR/toolchain_nao/
+    EXTERN_PATH_NATIVE=$CURR/toolchain_native/extern/
+
+	echo -n "Do you want append NaoTH environment variables to ~/.bashrc? $DEFSTRING : "
+	read ANSWER
+
+	# set default answer
+	if [ -z "$ANSWER" ]; then 
+	  ANSWER=$DEFAULT
+	fi
+
+	if [ "$ANSWER" = "y" -o "$ANSWER" = "Y" ]
+	then
+	  echo "-----------------------"
+	  echo "- extending ~/.bashrc -"
+	  echo "------------------------"
+
+	  echo "export PATH=\${PATH}:$CURR/toolchain_native/extern/bin:$CURR/toolchain_native/extern/lib # NAOTH" >> ~/.bashrc
+	  echo "export NAO_CTC=$CURR/toolchain_nao/ # NAOTH" >> ~/.bashrc
+	  echo "export EXTERN_PATH_NATIVE=$CURR/toolchain_native/extern/ # NAOTH" >> ~/.bashrc
+	fi
+else
+  echo "NaoTH environment variables already defined."
+fi
 
 echo "-----------------------------------"
 echo "- Generate projectconfig.user.lua -"
 echo "-----------------------------------"
-
 
 cat >projectconfig.user.lua <<EOL
 -- special pathes which can be configured manualy.
@@ -47,38 +77,6 @@ AL_DIR = nil
 --  PATH:libdirs {"my/native/libs/path"}
 --end
 EOL
-
-
-if [ -z "$DEFAULT" ]; then DEFAULT="n" ; fi
-DEFSTRING="[Y/n]"
-if [ "$DEFAULT" = "n" ]; then 
-  DEFSTRING="[y/N]"
-fi
-
-# prevent multiple env_var definitions
-if [[ -z "${NAO_CTC}" || -z "${EXTERN_PATH_NATIVE}" ]]; then
-
-	echo -n "Do you want append NaoTH environment variables to ~/.bashrc? $DEFSTRING : "
-	read ANSWER
-
-	# set default answer
-	if [ -z "$ANSWER" ]; then 
-	  ANSWER=$DEFAULT
-	fi
-
-	if [ "$ANSWER" = "y" -o "$ANSWER" = "Y" ]
-	then
-	  echo "-----------------------"
-	  echo "- extending ~/.bashrc -"
-	  echo "------------------------"
-
-	  echo "export PATH=\${PATH}:$CURR/toolchain_native/extern/bin:$CURR/toolchain_native/extern/lib # NAOTH" >> ~/.bashrc
-	  echo "export NAO_CTC=$CURR/toolchain_nao/ # NAOTH" >> ~/.bashrc
-	  echo "export EXTERN_PATH_NATIVE=$CURR/toolchain_native/extern/ # NAOTH" >> ~/.bashrc
-	fi
-else
-  echo "NaoTH environment variables already defined."
-fi
 
 echo "-----------------------------------"
 echo "- compiling external dependencies -"
