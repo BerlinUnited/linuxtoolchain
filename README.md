@@ -3,7 +3,7 @@
 This is part of the native toolchain for Linux. 
 
 ## Changelog
-Version 3.3  
+Version 4  
 GCC Version 4.9.3  
 Visual Studio 2013  
 
@@ -11,6 +11,9 @@ Visual Studio 2013
  - added premake5
  - added whistledetector libs
  - added eigen 3.3.4
+ - deleted old caffe libs
+ - add environment variables to .profile instead of .bashrc
+ - updated protobuf to 3.4.1
 
 = Changes from 0.3 =  
  - fixed typo in protobuf version in last changelog  
