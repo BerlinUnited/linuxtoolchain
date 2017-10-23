@@ -1,9 +1,17 @@
-/extracted
-/include
-/etc
-/bin/*
-!/bin/premake4
-/lib
-/share
-/python
+# ignore nao dirs
+/toolchain_nao
+
+# ignore native installation directories
+/toolchain_native/extern/extracted
+/toolchain_native/extern/include
+/toolchain_native/extern/lib
+/toolchain_native/extern/share
+/toolchain_native/extern/etc
+/toolchain_native/extern/bin
+
+# ignore generated files
 projectconfig.user.lua
+
+# DONT ignore these files
+!/toolchain_nao/compiler/premake5.lua
+!/toolchain_native/extern/bin/premake5
