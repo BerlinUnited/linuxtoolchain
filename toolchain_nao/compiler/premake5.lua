@@ -3,7 +3,7 @@ local linux = "i686-berlinunited-linux-gnu"
 local gcc = "4.9.3" 
 
 -- intel atom
-local cpu_flags = "-m32 -march=i686 -msse -msse2 -mssse3"
+local cpu_flags = "-m32 -march=i686 -msse -msse2 -msse3 -mssse3"
 
 -- handy definitions for some pathes
 local crossDir = path.getabsolute(".") --NAO_CROSSCOMPILE .. "/" .. linux
