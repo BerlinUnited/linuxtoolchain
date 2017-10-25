@@ -48,10 +48,14 @@ local gcc = premake.tools.gcc
 if(_OPTIONS["platform"] == "Nao") then
   buildoptions {"-MMD"} -- its standard anyway
   buildoptions {cpu_flags .. cross_flags}
+  
+  -- extension is necessary on windows systems
+  binext = os.ishost("windows") and ".exe" or ""
+  
   -- reset compiler path to the cross compiler
-  gcc.tools.cc     = crossDir .. "/bin/" .. linux .. "-gcc"
-  gcc.tools.cxx    = crossDir .. "/bin/" .. linux .. "-g++"
-  gcc.tools.ar     = crossDir .. "/bin/" .. linux .. "-ar"
+  gcc.tools.cc     = crossDir .. "/bin/" .. linux .. "-gcc" .. binext
+  gcc.tools.cxx    = crossDir .. "/bin/" .. linux .. "-g++" .. binext
+  gcc.tools.ar     = crossDir .. "/bin/" .. linux .. "-ar" .. binext
   print("INFO: GCC path was changed for cross compiling to")
   print("> " .. crossDir)
 end
