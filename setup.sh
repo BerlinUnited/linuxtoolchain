@@ -6,12 +6,13 @@ if [ "$DEFAULT" = "n" ]; then
   DEFSTRING="[y/N]"
 fi
 
-# prevent multiple env_var definitions
-if [[ -z "${NAO_CTC}" || -z "${EXTERN_PATH_NATIVE}" ]]; then
+PROFILE_NAOTH_TOOLCHAIN_STRING="export NAOTH_TOOLCHAIN_PATH=$(pwd)"
+PROFILE_NAOTH_TOOLCHAIN_CURRENT=$(cat ~/.profile | grep "export NAOTH_TOOLCHAIN_PATH=")
 
-    CURR=`pwd`
-    NAO_CTC=$CURR/toolchain_nao/
-    EXTERN_PATH_NATIVE=$CURR/toolchain_native/extern/
+# prevent multiple env_var definitions
+if [[ -z "${NAOTH_TOOLCHAIN_PATH}" ]]; then
+
+    NAOTH_TOOLCHAIN_PATH=`pwd`
 
 	echo -n "Do you want append NaoTH environment variables to ~/.profile? $DEFSTRING : "
 	read ANSWER
@@ -23,20 +24,38 @@ if [[ -z "${NAO_CTC}" || -z "${EXTERN_PATH_NATIVE}" ]]; then
 
 	if [ "$ANSWER" = "y" -o "$ANSWER" = "Y" ]
 	then
-	  echo "-----------------------"
+	  echo "------------------------"
 	  echo "- extending ~/.profile -"
 	  echo "------------------------"
 
 	  # force new line
 	  echo  >> ~/.profile
+	  #
+	  echo "# NAOTH Toolchain" >> ~/.profile
+	  echo "$PROFILE_NAOTH_TOOLCHAIN_STRING" >> ~/.profile
+	  echo "[[ -f $NAOTH_TOOLCHAIN_PATH/.naoth.profile ]] && . $NAOTH_TOOLCHAIN_PATH/.naoth.profile" >> ~/.profile
+	fi
+elif [[ "$PROFILE_NAOTH_TOOLCHAIN_STRING" != "$PROFILE_NAOTH_TOOLCHAIN_CURRENT" ]]; then
 
-	  echo "export PATH=\${PATH}:$CURR/toolchain_native/extern/bin:$CURR/toolchain_native/extern/lib # NAOTH" >> ~/.profile
-	  echo "export NAO_CTC=$CURR/toolchain_nao/ # NAOTH" >> ~/.profile
-	  echo "export EXTERN_PATH_NATIVE=$CURR/toolchain_native/extern/ # NAOTH" >> ~/.profile
+	echo -e -n "NaoTH toolchain path in the ~/.profile is different to this path!\nDo you want to replace it? $DEFSTRING : "
+	read ANSWER
+
+	# set default answer
+	if [ -z "$ANSWER" ]; then 
+	  ANSWER=$DEFAULT
+	fi
+
+	if [ "$ANSWER" = "y" -o "$ANSWER" = "Y" ]
+	then
+		# replace toolchain path and using | as sed delimiter
+		sed -i "s|$PROFILE_NAOTH_TOOLCHAIN_CURRENT|$PROFILE_NAOTH_TOOLCHAIN_STRING|g" ~/.profile
 	fi
 else
   echo "NaoTH environment variables already defined."
 fi
+
+# load (new) profile
+. ~/.profile
 
 echo "-----------------------------------"
 echo "- Generate projectconfig.user.lua -"
