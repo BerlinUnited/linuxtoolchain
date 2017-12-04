@@ -14,4 +14,3 @@ projectconfig.user.lua
 
 # DONT ignore these files
 !/toolchain_nao/compiler/premake5.lua
-!/toolchain_native/extern/bin/premake5

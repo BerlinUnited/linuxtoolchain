@@ -41,6 +41,7 @@ fi
 # create target directories for installation
 mkdir -p "./include/sfsexp"
 mkdir -p "./lib"
+mkdir -p "./bin"
 
 # create extracted dir and step into it
 mkdir -p extracted
@@ -53,6 +54,7 @@ ask_install_package "glib"
 ask_install_package "protobuf"
 ask_install_package "opencv"
 ask_install_package "fftw3"
+ask_install_package "premake5"
 
 echo "==========================="
 echo "Selected packages for install:"
