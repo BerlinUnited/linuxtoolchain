@@ -9,17 +9,16 @@ if [ "$EXTERN_DIR" == "" ]; then
   exit -1
 fi
 
-#if [ "$1" = "check" ]; then
-  #if [ -f "/usr/include/fftw3.h" -o -f "$EXTERN_DIR/include/fftw3.h" ]; then
-  #  echo "n"
-  #  exit 0
-  #else
-  #  echo "y" 
-  #  exit 1
-  #fi
-#elif [ "$1" = "install" ]; then
-if [ "$1" = "install" ]; then
-  #rm -Rf fftw-3.3.5
+if [ "$1" = "check" ]; then
+  if [ -f "$EXTERN_DIR/bin/premake5" ]; then
+    echo "n"
+    exit 0
+  else
+    echo "y" 
+    exit 1
+  fi
+elif [ "$1" = "install" ]; then
+  rm -Rf premake-5.0.0-alpha12
   tar xvzf ../downloads/premake-5.0.0-alpha12.tar.gz
   cd premake-5.0.0-alpha12/build/gmake.unix
   make Premake5
