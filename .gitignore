@@ -1,6 +1,3 @@
-# ignore nao dirs
-/toolchain_nao
-
 # ignore native installation directories
 /toolchain_native/extern/extracted
 /toolchain_native/extern/include
