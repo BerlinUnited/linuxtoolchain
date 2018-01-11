@@ -98,6 +98,17 @@ AL_DIR = nil
 --  PATH:includedirs {"my/native/includes/path"}
 --  PATH:libdirs {"my/native/libs/path"}
 --end
+
+-- needed for compiling of LogSimulatorJNI, paths must be adjusted
+-- this might not be necessary in some linux distros
+--[[
+if _OPTIONS["JNI"] ~= nil then
+  includedirs {
+    "C:/Program Files (x86)/Java/jdk1.8.0_131/include",
+    "C:/Program Files (x86)/Java/jdk1.8.0_131/include/win32"
+  }
+end
+]]
 EOL
 
 echo "-----------------------------------"
