@@ -21,7 +21,7 @@ elif [ "$1" = "install" ]; then
   rm -Rf premake-5.0.0-alpha12
   tar xvzf ../downloads/premake-5.0.0-alpha12.tar.gz
   cd premake-5.0.0-alpha12/build/gmake.unix
-  make Premake5
+  make 
   cp ../../bin/release/premake5 $EXTERN_DIR/bin
   cd ..  
 fi

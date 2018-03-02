@@ -109,6 +109,6 @@ cd toolchain_native/extern/
 chmod u+x install_linux.sh
 ./install_linux.sh
 
-echo "------------------------------------------------------"
-echo "- restart is needed in order for the changes to work -"
-echo "------------------------------------------------------"
+echo "-------------------------------------------------------------------------------------------"
+echo "- If paths were appended to .profile a restart is needed in order for the changes to work -"
+echo "-------------------------------------------------------------------------------------------"
