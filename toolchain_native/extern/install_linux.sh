@@ -55,6 +55,7 @@ ask_install_package "protobuf"
 ask_install_package "opencv"
 ask_install_package "fftw3"
 ask_install_package "premake5"
+ask_install_package "lua"
 
 echo "==========================="
 echo "Selected packages for install:"
