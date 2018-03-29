@@ -26,7 +26,7 @@ elif [ "$1" = "install" ]; then
   make linux
 
   mkdir -p $EXTERN_DIR/include/lua
-  cp src/liblua.a $EXTERN_DIR/lib
+  cp src/liblua.a $EXTERN_DIR/lib/liblua53.a
   cp src/*.h $EXTERN_DIR/include/lua
   cd ../../
 fi
