@@ -23,5 +23,6 @@ elif [ "$1" = "install" ]; then
   cd premake-5.0.0-alpha12/build/gmake.unix
   make 
   cp ../../bin/release/premake5 $EXTERN_DIR/bin
-  cd ..  
+  cd ../../../  
+  pwd
 fi
