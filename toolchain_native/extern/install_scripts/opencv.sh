@@ -21,12 +21,14 @@ if [ "$1" = "check" ]; then
 elif [ "$1" = "install" ]; then
   export CMAKE_LIBRARY_PATH="$EXTERN_DIR/lib"
   export CMAKE_INCLUDE_PATH="$EXTERN_DIR/include"
-  rm -Rf opencv-3.0.0
+  rm -Rf opencv-3.1.0
   tar xvaf ../downloads/opencv-3.1.0.tar.xz
   cd opencv-3.1.0
   rm -Rf build
   mkdir build && cd build
-  cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX="$EXTERN_DIR" -DBUILD_opencv_apps=OFF -D BUILD_DOCS=OFF -DBUILD_TESTS=OFF -DBUILD_opencv_java=OFF -DBUILD_opencv_python2=ON -DBUILD_opencv_python3=ON -DBUILD_PERF_TESTS=OFF -DENABLE_PRECOMPILED_HEADERS=OFF  -DBUILD_opencv_highgui=OFF -DBUILD_opencv_videoio=OFF -DBUILD_opencv_imgcodecs=OFF -DWITH_CUDA=OFF ..
+  cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX="$EXTERN_DIR" -DBUILD_opencv_apps=OFF -D BUILD_DOCS=OFF -DBUILD_TESTS=OFF -DBUILD_opencv_java=OFF \
+  -DBUILD_opencv_python2=ON -DBUILD_opencv_python3=ON -DBUILD_PERF_TESTS=OFF -DENABLE_PRECOMPILED_HEADERS=OFF  -DBUILD_opencv_highgui=ON -DBUILD_opencv_videoio=ON \
+  -DBUILD_opencv_imgcodecs=ON -DWITH_CUDA=OFF -DWITH_FFMPEG=OFF ..
   make && make install
 
   cd ../../
