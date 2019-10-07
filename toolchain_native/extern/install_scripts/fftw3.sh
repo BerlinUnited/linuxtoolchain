@@ -3,6 +3,8 @@
 # stop at the first error
 set -e
 
+# current path is toolchain_native/extern/extracted
+
 if [ "$EXTERN_DIR" == "" ]; then
   echo ".::ERROR::. enviroment variable EXTERN_DIR was not set"
   echo ".::ERROR::. will exit"
@@ -23,4 +25,14 @@ elif [ "$1" = "install" ]; then
   cd fftw-3.3.5
   ./configure --prefix="$EXTERN_DIR" && make && make install
   cd ..  
+
+  # move fftw headerfiles in separate folder as the naoth code expects
+  cd ../include
+  mkdir -p fftw3
+  mv fftw3.h  fftw3/fftw3.h
+  mv fftw3.f03 fftw3/fftw3.f03
+  mv fftw3.f fftw3/fftw3.f
+  mv fftw3l.f03 fftw3/fftw3l.f03
+  mv fftw3q.f03 fftw3/fftw3q.f03
+  cd ../extracted
 fi
