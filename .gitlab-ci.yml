@@ -9,7 +9,7 @@ variables:
     # https://about.gitlab.com/blog/2019/07/31/docker-in-docker-with-docker-19-dot-03/
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
-    RELEASE_IMAGE: scm.cms.hu-berlin.de:4567/berlinunited/naoth-citest
+    RELEASE_IMAGE: scm.cms.hu-berlin.de:4567/berlinunited/tools/linuxtoolchain
 
 create_toolchain:
   script:
