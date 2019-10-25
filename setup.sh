@@ -72,9 +72,6 @@ FRAMEWORK_PATH = nil
 -- for native platform
 -- default: "../../Extern"
 EXTERN_PATH_NATIVE = "${EXTERN_PATH_NATIVE}"
--- webots instalation if available
--- default: os.getenv("WEBOTS_HOME")
-WEBOTS_HOME = nil
 
 -- path to the crosscompiler and libs
 -- default: os.getenv("NAO_CTC")
@@ -90,25 +87,19 @@ EXTERN_PATH_NAO = nil
 -- default: os.getenv("AL_DIR")
 AL_DIR = nil
 
--- example: add additional dirs for both platforms
---if PLATFORM == "Nao" then
---  PATH:includedirs {"my/nao/includes/path"}
---  PATH:libdirs {"my/nao/libs/path"}
---else
---  PATH:includedirs {"my/native/includes/path"}
---  PATH:libdirs {"my/native/libs/path"}
---end
+function set_user_defined_paths() 
 
--- needed for compiling of LogSimulatorJNI, paths must be adjusted
--- this might not be necessary in some linux distros
---[[
-if _OPTIONS["JNI"] ~= nil then
-  includedirs {
-    "C:/Program Files (x86)/Java/jdk1.8.0_131/include",
-    "C:/Program Files (x86)/Java/jdk1.8.0_131/include/win32"
-  }
+  -- add your additional include directories here
+  -- sysincludedirs { "my/nao/includes/path1" }
+
+  -- add your additional lib directories here
+  --syslibdirs { "my/nao/libs/path1" }
+
+  -- NOTE: this should be used only for project internal files
+  -- use this ONLY if you know what you are doing
+  --includedirs {}
+  --libdirs {}
 end
-]]
 EOL
 
 echo "-----------------------------------"
