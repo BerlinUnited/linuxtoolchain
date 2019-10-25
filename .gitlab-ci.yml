@@ -3,7 +3,8 @@ services:
  - docker:dind
 
 before_script:
-    - docker login -u CI_USER -p $CI_USER_TOKEN scm.cms.hu-berlin.de:4567
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN scm.cms.hu-berlin.de:4567
+    # - docker login -u CI_USER -p $CI_USER_TOKEN scm.cms.hu-berlin.de:4567
 
 variables:
     # https://about.gitlab.com/blog/2019/07/31/docker-in-docker-with-docker-19-dot-03/
