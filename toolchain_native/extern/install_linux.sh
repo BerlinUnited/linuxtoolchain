@@ -73,6 +73,7 @@ else
   read ANSWER
 
   if [ "$ANSWER" != "n" ]; then
+    CWD=$(pwd) # remember the current working directory
     # actually install the packages
     for PKG in $PACKAGESTOINSTALL
     do
@@ -80,6 +81,7 @@ else
        echo "Installing \"$PKG\""
        echo "==========================="
         . ../install_scripts/$PKG.sh install
+        cd $CWD # make sure, the script didn't change the directory
     done
   fi
 fi
