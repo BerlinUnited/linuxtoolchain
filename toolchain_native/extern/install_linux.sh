@@ -47,37 +47,42 @@ mkdir -p "./bin"
 mkdir -p extracted
 cd extracted
 
-echo
-ask_install_package "eigen"
-ask_install_package "sfsexp"
-ask_install_package "glib"
-ask_install_package "protobuf"
-ask_install_package "opencv"
-ask_install_package "fftw3"
-ask_install_package "premake5"
-ask_install_package "lua"
-
-echo "==========================="
-echo "Selected packages for install:"
-for PKG in $PACKAGESTOINSTALL
-do
-   echo "* $PKG"
+# iterate through install scripts
+for scripts in ../install_scripts/*.sh; do
+  # get the script/file name
+  file_name=$(basename -s ".sh" $scripts)
+  # ignore files starting with underscore
+  if [[ $file_name == _* ]]; then
+    continue
+  fi
+  ask_install_package "$file_name"
 done
 
-echo -n "Proceed? [Y/n]: "
-read ANSWER
+echo "==========================="
 
-if [ "$ANSWER" != "n" ]; then
-  # actually install the packages
+if [[ -z "$PACKAGESTOINSTALL" ]]; then
+  echo "Nothing to install"
+else
+  echo "Selected packages for install:"
   for PKG in $PACKAGESTOINSTALL
   do
-     echo "==========================="  
-     echo "Installing \"$PKG\""
-     echo "==========================="
-      . ../install_scripts/$PKG.sh install
+     echo "* $PKG"
   done
-fi
 
+  echo -n "Proceed? [Y/n]: "
+  read ANSWER
+
+  if [ "$ANSWER" != "n" ]; then
+    # actually install the packages
+    for PKG in $PACKAGESTOINSTALL
+    do
+       echo "==========================="  
+       echo "Installing \"$PKG\""
+       echo "==========================="
+        . ../install_scripts/$PKG.sh install
+    done
+  fi
+fi
 
 # get out of the extracted directory
 cd ..
