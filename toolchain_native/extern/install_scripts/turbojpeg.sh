@@ -20,10 +20,17 @@ if [ "$1" = "check" ]; then
     exit 1
   fi
 elif [ "$1" = "install" ]; then
+  # remove the old stuff
   rm -Rf libjpeg-turbo-2.0.3
+  # extract the new stuff
   tar xvzf ../downloads/libjpeg-turbo-2.0.3.tar.gz
+  # prepare build
   cd libjpeg-turbo-2.0.3
   mkdir build && cd build
-  cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$EXTERN_DIR -DCMAKE_INSTALL_LIBDIR="$EXTERN_DIR/lib" -DCMAKE_INSTALL_INCLUDEDIR="$EXTERN_DIR/include/turbojpeg" .. && make && make install
+  # check for yasm/nasm compiler
+  WITH_SIMD="on" && (! type "nasm" &> /dev/null && ! type "yasm" &> /dev/null) && WITH_SIMD="off"
+  # build ...
+  cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$EXTERN_DIR -DCMAKE_INSTALL_LIBDIR="$EXTERN_DIR/lib" -DCMAKE_INSTALL_INCLUDEDIR="$EXTERN_DIR/include/turbojpeg" -DWITH_SIMD=$WITH_SIMD .. && make && make install
+  # finish
   cd ..  
 fi
