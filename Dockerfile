@@ -18,5 +18,7 @@ ENV NAO_CTC="${NAOTH_TOOLCHAIN_PATH}/toolchain_nao/"
 ENV EXTERN_PATH_NATIVE="${NAOTH_TOOLCHAIN_PATH}/toolchain_native/extern/"
 
 # setup the toolchain libs
+RUN echo "$PWD"
+RUN echo $(ls)
 RUN chmod a+x ./docker_setup.sh
 RUN ./docker_setup.sh
