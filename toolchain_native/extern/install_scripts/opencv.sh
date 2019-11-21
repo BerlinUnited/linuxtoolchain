@@ -15,14 +15,14 @@ if [ "$1" = "check" ]; then
     echo "n"
     exit 0
   else
-    echo "y" 
+    echo "y"
     exit 1
   fi
 elif [ "$1" = "install" ]; then
   export CMAKE_LIBRARY_PATH="$EXTERN_DIR/lib"
   export CMAKE_INCLUDE_PATH="$EXTERN_DIR/include"
   rm -Rf opencv-3.1.0
-  tar xvaf ../downloads/opencv-3.1.0.tar.xz
+  tar xvf ../downloads/opencv-3.1.0.tar.xz
   cd opencv-3.1.0
   rm -Rf build
   mkdir build && cd build
