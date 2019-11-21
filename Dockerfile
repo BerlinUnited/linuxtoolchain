@@ -20,4 +20,5 @@ ENV EXTERN_PATH_NATIVE="${NAOTH_TOOLCHAIN_PATH}/toolchain_native/extern/"
 # setup the toolchain libs
 #RUN chmod a+x ./docker_setup.sh
 #RUN ./docker_setup.sh
+RUN pwd
 RUN yes Y | ./setup.sh
