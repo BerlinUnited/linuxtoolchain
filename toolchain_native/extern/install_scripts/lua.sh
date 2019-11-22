@@ -19,7 +19,6 @@ if [ "$1" = "check" ]; then
   fi
 elif [ "$1" = "install" ]; then
  
-  #rm -Rf opencv-3.0.0
   tar xvzf ../downloads/lua-5.3.4.tar.gz
   cp -R ../downloads/luabridge $EXTERN_DIR/include/luabridge
   cd lua-5.3.4
