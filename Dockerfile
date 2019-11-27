@@ -12,5 +12,10 @@ WORKDIR /naoth/toolchain
 # Copy the current directory contents into the container at /naoth
 COPY . /naoth/toolchain
 
+ENV NAOTH_TOOLCHAIN_PATH=/naoth/toolchain
+ENV PATH="${PATH}:${NAOTH_TOOLCHAIN_PATH}/toolchain_native/extern/bin:${NAOTH_TOOLCHAIN_PATH}/toolchain_native/extern/lib"
+ENV NAO_CTC="${NAOTH_TOOLCHAIN_PATH}/toolchain_nao/"
+ENV EXTERN_PATH_NATIVE="${NAOTH_TOOLCHAIN_PATH}/toolchain_native/extern/"
+
 # setup the toolchain libs
 RUN yes Y | ./setup.sh
