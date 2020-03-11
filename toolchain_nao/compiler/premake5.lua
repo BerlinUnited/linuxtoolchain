@@ -22,8 +22,9 @@ if(_OPTIONS["platform"] == "Nao") then
       "-target i686-pc-linux-gnu"
     }
     linkoptions {
-      "-target i686-pc-linux-gnu"--,
+      "-target i686-pc-linux-gnu",
       --"-fuse-ld=" .. COMPILER_PATH_NAO .. "/bin/i686-berlinunited-linux-gnu-ld.exe"
+      "-fuse-ld=lld" -- use the native linker of clang
     }
   else
     print("INFO: Crosscompile with GCC " .. version)
