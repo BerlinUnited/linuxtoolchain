@@ -22,8 +22,8 @@ if(_OPTIONS["platform"] == "Nao") then
       "-target i686-pc-linux-gnu"
     }
     linkoptions {
-      "-target i686-pc-linux-gnu",
-      "-fuse-ld=" .. COMPILER_PATH_NAO .. "/bin/i686-berlinunited-linux-gnu-ld.exe"
+      "-target i686-pc-linux-gnu"--,
+      --"-fuse-ld=" .. COMPILER_PATH_NAO .. "/bin/i686-berlinunited-linux-gnu-ld.exe"
     }
   else
     print("INFO: Crosscompile with GCC " .. version)
@@ -48,8 +48,9 @@ if(_OPTIONS["platform"] == "Nao") then
     crossSystemDir .. "/include/c++/" .. version .. "/" .. linux
   }
   linkoptions {
+      --"-v",
       "--sysroot=" .. crossSystemDir .. "/sysroot/", 
-      "-v"
+      "-Wl,-rpath=/home/nao/lib"
   }
   syslibdirs {
     "\"" .. crossDir .. "/lib/gcc/" .. linux .. "/" .. version .. "/" .. "\"",
