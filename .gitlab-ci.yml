@@ -14,8 +14,9 @@ variables:
 
 create_toolchain:
   only:
-    branches:
+    refs:
       - master
+      - web
   script:
     - docker build -t $RELEASE_IMAGE .
     - docker push $RELEASE_IMAGE
