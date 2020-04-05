@@ -13,6 +13,9 @@ variables:
     RELEASE_IMAGE: scm.cms.hu-berlin.de:4567/berlinunited/tools/linuxtoolchain
 
 create_toolchain:
+  only:
+    branches:
+      - master
   script:
     - docker build -t $RELEASE_IMAGE .
     - docker push $RELEASE_IMAGE
