@@ -1,3 +1,7 @@
+stages:
+  - build
+  - deploy
+
 image: docker:latest
 services:
  - docker:dind
@@ -12,11 +16,16 @@ variables:
     DOCKER_TLS_CERTDIR: ""
     RELEASE_IMAGE: scm.cms.hu-berlin.de:4567/berlinunited/tools/linuxtoolchain
 
-create_toolchain:
+build_toolchain:
+  stage: build
+  script:
+    - docker build -t $RELEASE_IMAGE .
+
+deploy_toolchain:
+  stage: deploy
   only:
     refs:
       - master
       - web
   script:
-    - docker build -t $RELEASE_IMAGE .
     - docker push $RELEASE_IMAGE
