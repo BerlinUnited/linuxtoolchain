@@ -18,14 +18,21 @@ variables:
 
 build_toolchain:
   stage: build
+  except:
+    refs:
+      - master
   script:
+    - echo "only build the toolchain"
     - docker build -t $RELEASE_IMAGE .
 
-deploy_toolchain:
+# TODO how to do manual deployment?
+build_and_deploy_toolchain:
   stage: deploy
   only:
     refs:
       - master
       - web
   script:
+    - echo "build and deploy the toolchain"
+    - docker build -t $RELEASE_IMAGE .
     - docker push $RELEASE_IMAGE
