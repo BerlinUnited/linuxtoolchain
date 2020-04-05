@@ -4,7 +4,7 @@ FROM ubuntu:18.04
 # Install system dependencies
 RUN apt-get update -y --fix-missing
 RUN apt-get upgrade -y
-RUN apt-get install openjdk-8-jre build-essential cmake zlib1g-dev git libreadline-dev gettext -y
+RUN apt-get --no-install-recommends install openjdk-8-jre build-essential cmake zlib1g-dev git libreadline-dev gettext -y
 
 # Set the working directory to /naoth
 WORKDIR /naoth/toolchain
