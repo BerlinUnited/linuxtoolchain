@@ -46,6 +46,6 @@ build_naoth:
       - master
       - web
   trigger:
-      project: https://scm.cms.hu-berlin.de/berlinunited/naoth-2020
-      branch: infrastructure/improve_ci
-#       strategy: depend  # does not seem to work yet
+    project: https://scm.cms.hu-berlin.de/berlinunited/naoth-2020
+    branch: infrastructure/improve_ci
+    strategy: depend  # does not seem to work yet
