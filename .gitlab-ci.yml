@@ -16,7 +16,6 @@ variables:
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
     RELEASE_IMAGE: scm.cms.hu-berlin.de:4567/berlinunited/tools/linuxtoolchain
-    TOOLCHAIN_TRIGGER: abc
 
 build_toolchain:
   stage: build
@@ -28,7 +27,7 @@ build_toolchain:
     - docker build -t $RELEASE_IMAGE .
 
 # TODO how to do manual deployment?
-.build_and_deploy_toolchain:
+build_and_deploy_toolchain:
   stage: deploy
   only:
     refs:
