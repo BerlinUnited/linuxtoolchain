@@ -46,4 +46,4 @@ build_naoth:
       - master
       - web
   script:
-  - curl --request POST --form token=${CI_JOB_TOKEN} --form ref=develop --form "variables[CI_PIPELINE_SOURCE]=pipeline" https://gitlab.example.com/api/v4/projects/3384/trigger/pipeline
+  - curl --request POST --form token=${CI_JOB_TOKEN} --form ref=develop --form "variables[CI_PIPELINE_SOURCE]=pipeline" https://scm.cms.hu-berlin.de/berlinunited/naoth-2020/api/v4/projects/3384/trigger/pipeline
