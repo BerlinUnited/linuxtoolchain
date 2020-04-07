@@ -27,7 +27,7 @@ build_toolchain:
     - docker build -t $RELEASE_IMAGE .
 
 # TODO how to do manual deployment?
-build_and_deploy_toolchain:
+.build_and_deploy_toolchain:
   stage: deploy
   only:
     refs:
@@ -45,5 +45,5 @@ build_naoth:
       - master
       - web
   trigger:
-      project: berlinunited/naoth-2020
+      project: https://scm.cms.hu-berlin.de/berlinunited/naoth-2020
       strategy: depend
