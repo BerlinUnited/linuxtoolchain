@@ -45,7 +45,5 @@ build_naoth:
     refs:
       - master
       - web
-  trigger:
-    project: https://scm.cms.hu-berlin.de/berlinunited/naoth-2020
-    branch: infrastructure/improve_ci
-    strategy: depend  # does not seem to work yet
+  script:
+  - "curl --request POST --form token=${CI_JOB_TOKEN} --form ref=develop --form "variables[CI_PIPELINE_SOURCE]=pipeline" https://gitlab.example.com/api/v4/projects/3384/trigger/pipeline"
