@@ -1,6 +1,7 @@
 stages:
   - build
   - deploy
+  - test
 
 image: docker:latest
 services:
@@ -36,3 +37,13 @@ build_and_deploy_toolchain:
     - echo "build and deploy the toolchain"
     - docker build -t $RELEASE_IMAGE .
     - docker push $RELEASE_IMAGE
+
+build_naoth:
+  stage: test
+  only:
+    refs:
+      - master
+      - web
+  trigger:
+      project: berlinunited/naoth-2020
+      strategy: depend
