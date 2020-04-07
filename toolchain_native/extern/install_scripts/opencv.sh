@@ -27,8 +27,7 @@ elif [ "$1" = "install" ]; then
   rm -Rf build
   mkdir build && cd build
   cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX="$EXTERN_DIR" -DBUILD_opencv_apps=OFF -D BUILD_DOCS=OFF -DBUILD_TESTS=OFF -DBUILD_opencv_java=OFF \
-  -DBUILD_opencv_python2=OFF -DBUILD_opencv_python3=OFF -DBUILD_PERF_TESTS=OFF -DENABLE_PRECOMPILED_HEADERS=OFF  -DBUILD_opencv_highgui=ON -DBUILD_opencv_videoio=ON \
-  -DBUILD_opencv_imgcodecs=ON -DWITH_CUDA=OFF -DWITH_FFMPEG=OFF ..
+  -DBUILD_opencv_python2=OFF -DBUILD_opencv_python3=OFF -DBUILD_PERF_TESTS=OFF -DENABLE_PRECOMPILED_HEADERS=OFF -DBUILD_LIST=core,improc,ml,objdetect -DWITH_CUDA=OFF -DWITH_FFMPEG=OFF ..
   make && make install
 
   cd ../../
