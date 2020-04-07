@@ -16,7 +16,7 @@ variables:
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
     RELEASE_IMAGE: scm.cms.hu-berlin.de:4567/berlinunited/tools/linuxtoolchain
-    TOOLCHAIN_TRIGGER: 1
+    TOOLCHAIN_TRIGGER: "true"
 
 build_toolchain:
   stage: build
@@ -45,6 +45,8 @@ build_naoth:
     refs:
       - master
       - web
+  variables:  
+    TOOLCHAIN_TRIGGER: "blabla"
   trigger:
       project: https://scm.cms.hu-berlin.de/berlinunited/naoth-2020
       branch: infrastructure/improve_ci
