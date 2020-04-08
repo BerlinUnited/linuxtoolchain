@@ -25,6 +25,6 @@ elif [ "$1" = "install" ]; then
   rm -Rf fftw-3.3.5
   tar xvzf ../downloads/fftw-3.3.5.tar.gz
   cd fftw-3.3.5
-  ./configure --prefix="$EXTERN_DIR" --includedir="\$(prefix)/$FFTW_INCLUDE_DIR" && make && make install
+  ./configure CFLAGS="-fPIC" --prefix="$EXTERN_DIR" --includedir="\$(prefix)/$FFTW_INCLUDE_DIR" && make && make install
   cd ..
 fi
