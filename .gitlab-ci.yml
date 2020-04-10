@@ -1,6 +1,5 @@
 stages:
   - build
-  - deploy
   - test
 
 image: docker:latest
@@ -15,34 +14,33 @@ variables:
     # https://about.gitlab.com/blog/2019/07/31/docker-in-docker-with-docker-19-dot-03/
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
-    RELEASE_IMAGE: scm.cms.hu-berlin.de:4567/berlinunited/tools/linuxtoolchain
+    DOCKER_IMAGE: scm.cms.hu-berlin.de:4567/berlinunited/tools/linuxtoolchain
 
-build_toolchain:
+build_and_deploy:
   stage: build
-  except:
-    refs:
-      - master
-  script:
-    - echo "only build the toolchain"
-    - docker build -t $RELEASE_IMAGE .
-
-# TODO how to do manual deployment?
-build_and_deploy_toolchain:
-  stage: deploy
   only:
     refs:
-      - master
       - web
+      - master
+      - merge_requests
   script:
     - echo "build and deploy the toolchain"
-    - docker build -t $RELEASE_IMAGE .
-    - docker push $RELEASE_IMAGE
+    # getting docker-tag friendly version of the current branch name: replace / with underscore
+    - branchname=`echo "${CI_COMMIT_REF_NAME}" | sed "s/\//_/g"`
 
-.build_naoth:
+    - docker build -t $DOCKER_IMAGE:$branchname .
+    - docker push $DOCKER_IMAGE:$branchname
+
+
+build_naoth:
   stage: test
   only:
     refs:
-      - master
       - web
+      - master
+      - merge_requests
   script:
-  - curl --request POST --form token=${CI_JOB_TOKEN} --form ref=develop --form "variables[CI_PIPELINE_SOURCE]=pipeline" https://scm.cms.hu-berlin.de/berlinunited/naoth-2020/api/v4/projects/3384/trigger/pipeline
+  - apk add curl
+  # getting docker-tag friendly version of the current branch name: replace / with underscore
+  - branchname=`echo "${CI_COMMIT_REF_NAME}" | sed "s/\//_/g"`
+  - curl --request POST --form token=99cecc4a5ecf9928d287a592236580 --form ref=develop --form "variables[DOCKER_IMAGE]=$DOCKER_IMAGE:$branchname" https://scm.cms.hu-berlin.de/api/v4/projects/3384/trigger/pipeline
