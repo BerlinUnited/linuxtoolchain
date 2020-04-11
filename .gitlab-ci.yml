@@ -22,7 +22,7 @@ build_base:
     variables:
       - $BUILD_BASE_IMAGE
   script:
-    - docker build -t $DOCKER_IMAGE:toolchain_base_image .
+    - docker build -f Dockerfile.base -t $DOCKER_IMAGE:toolchain_base_image .
     - docker push $DOCKER_IMAGE:toolchain_base_image
 
 build_and_deploy:
