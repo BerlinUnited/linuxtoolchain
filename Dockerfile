@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 
 # Install system dependencies
 RUN apt-get update -y --fix-missing \
-    && apt-get --no-install-recommends install openjdk-8-jre build-essential \
+    && apt-get --no-install-recommends install build-essential \
     cmake zlib1g-dev git libreadline-dev gettext cppcheck python-pip -y \
     && pip install pygments \
     && rm -rf /var/lib/apt/lists/*
@@ -20,4 +20,4 @@ ENV NAO_CTC="${NAOTH_TOOLCHAIN_PATH}/toolchain_nao/"
 ENV EXTERN_PATH_NATIVE="${NAOTH_TOOLCHAIN_PATH}/toolchain_native/extern/"
 
 # setup the toolchain libs
-RUN yes Y | ./setup.sh
+RUN yes Y | ./setup.sh && rm -rf toolchain_native/extern/extracted && rm -rf toolchain_native/extern/downloads
