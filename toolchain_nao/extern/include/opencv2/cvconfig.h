@@ -69,13 +69,13 @@
 #define HAVE_EIGEN
 
 /* FFMpeg video library */
-#define HAVE_FFMPEG
+/* #undef HAVE_FFMPEG */
 
 /* ffmpeg's libswscale */
-#define HAVE_FFMPEG_SWSCALE
+/* #undef HAVE_FFMPEG_SWSCALE */
 
 /* ffmpeg in Gentoo */
-#define HAVE_GENTOO_FFMPEG
+/* #undef HAVE_GENTOO_FFMPEG */
 
 /* Geospatial Data Abstraction Library */
 /* #undef HAVE_GDAL */
@@ -103,10 +103,10 @@
 /* #undef HAVE_IPP_A */
 
 /* JPEG-2000 codec */
-#define HAVE_JASPER
+/* #undef HAVE_JASPER */
 
 /* IJG JPEG codec */
-#define HAVE_JPEG
+/* #undef HAVE_JPEG */
 
 /* libpng/png.h needs to be included */
 /* #undef HAVE_LIBPNG_PNG_H */
@@ -126,7 +126,7 @@
 /* #undef HAVE_OPENCL_SVM */
 
 /* OpenEXR codec */
-#define HAVE_OPENEXR
+/* #undef HAVE_OPENEXR */
 
 /* OpenGL support*/
 /* #undef HAVE_OPENGL */
@@ -138,7 +138,7 @@
 /* #undef HAVE_OPENNI2 */
 
 /* PNG codec */
-#define HAVE_PNG
+/* #undef HAVE_PNG */
 
 /* Posix threads (pthreads) */
 #define HAVE_PTHREADS
@@ -162,7 +162,7 @@
 /* #undef HAVE_TBB */
 
 /* TIFF codec */
-#define HAVE_TIFF
+/* #undef HAVE_TIFF */
 
 /* Unicap video capture library */
 /* #undef HAVE_UNICAP */
