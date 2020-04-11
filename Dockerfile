@@ -2,10 +2,11 @@
 FROM ubuntu:18.04
 
 # Install system dependencies
-RUN apt-get update -y --fix-missing
-RUN apt-get upgrade -y
-RUN apt-get --no-install-recommends install openjdk-8-jre build-essential cmake zlib1g-dev git libreadline-dev gettext cppcheck python-pip -y
-RUN pip install pygments
+RUN apt-get update -y --fix-missing \
+    && apt-get --no-install-recommends install openjdk-8-jre build-essential \
+    cmake zlib1g-dev git libreadline-dev gettext cppcheck python-pip -y \
+    && pip install pygments \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set the working directory to /naoth
 WORKDIR /naoth/toolchain
