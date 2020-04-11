@@ -1,12 +1,5 @@
 # Base OS layer: Latest Ubuntu LTS.
-FROM ubuntu:18.04
-
-# Install system dependencies
-RUN apt-get update -y --fix-missing \
-    && apt-get --no-install-recommends install build-essential \
-    cmake zlib1g-dev git libreadline-dev gettext cppcheck python-pip -y \
-    && pip install pygments \
-    && rm -rf /var/lib/apt/lists/*
+FROM scm.cms.hu-berlin.de:4567/berlinunited/tools/linuxtoolchain:toolchain_base_image
 
 # Set the working directory to /naoth
 WORKDIR /naoth/toolchain
