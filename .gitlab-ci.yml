@@ -16,6 +16,15 @@ variables:
     DOCKER_TLS_CERTDIR: ""
     DOCKER_IMAGE: scm.cms.hu-berlin.de:4567/berlinunited/tools/linuxtoolchain
 
+build_base:
+  stage: build
+  only:
+    variables:
+      - $BUILD_BASE_IMAGE
+  script:
+    - docker build -f Dockerfile.base -t $DOCKER_IMAGE:toolchain_base_image .
+    - docker push $DOCKER_IMAGE:toolchain_base_image
+
 build_and_deploy:
   stage: build
   only:
