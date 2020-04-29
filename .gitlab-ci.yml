@@ -1,5 +1,6 @@
 stages:
-  - build
+  - build_base
+  - build_libs
   - test
 
 image: docker:latest
@@ -17,7 +18,7 @@ variables:
     DOCKER_IMAGE: scm.cms.hu-berlin.de:4567/berlinunited/tools/linuxtoolchain
 
 build_base:
-  stage: build
+  stage: build_base
   only:
     variables:
       - $BUILD_BASE_IMAGE
@@ -26,7 +27,7 @@ build_base:
     - docker push $DOCKER_IMAGE:toolchain_base_image
 
 build_and_deploy:
-  stage: build
+  stage: build_libs
   only:
     refs:
       - web
