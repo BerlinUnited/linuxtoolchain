@@ -18,21 +18,19 @@ variables:
     DOCKER_IMAGE: scm.cms.hu-berlin.de:4567/berlinunited/tools/linuxtoolchain
 
 build_base:
+  # there is a schedule that runs every week and builds the base image
   stage: build_base
-  only:
-    variables:
-      - $BUILD_BASE_IMAGE
+  rules:
+    - if: '$BUILD_BASE_IMAGE'
   script:
     - docker build -f Dockerfile.base -t $DOCKER_IMAGE:toolchain_base_image .
     - docker push $DOCKER_IMAGE:toolchain_base_image
 
 build_and_deploy:
   stage: build_libs
-  only:
-    refs:
-      - web
-      - master
-      - merge_requests
+  rules:
+     - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master"'
+     - if: '$CI_PIPELINE_SOURCE == "web"'
   script:
     - echo "build and deploy the toolchain"
     # getting docker-tag friendly version of the current branch name: replace / with underscore
@@ -44,11 +42,9 @@ build_and_deploy:
 
 build_naoth:
   stage: test
-  only:
-    refs:
-      - web
-      - master
-      - merge_requests
+  rules:
+     - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master"'
+     - if: '$CI_PIPELINE_SOURCE == "web"'
   script:
   - apk add curl
   # getting docker-tag friendly version of the current branch name: replace / with underscore
