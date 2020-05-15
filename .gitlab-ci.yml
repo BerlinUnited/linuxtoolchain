@@ -31,6 +31,7 @@ build_and_deploy:
   rules:
      - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master"'
      - if: '$CI_PIPELINE_SOURCE == "web"'
+     - if: $CI_COMMIT_BRANCH == "master"
   script:
     - echo "build and deploy the toolchain"
     # getting docker-tag friendly version of the current branch name: replace / with underscore
@@ -45,6 +46,7 @@ build_naoth:
   rules:
      - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master"'
      - if: '$CI_PIPELINE_SOURCE == "web"'
+     - if: $CI_COMMIT_BRANCH == "master"
   script:
   - apk add curl
   # getting docker-tag friendly version of the current branch name: replace / with underscore
