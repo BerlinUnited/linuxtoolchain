@@ -21,7 +21,8 @@ elif [ "$1" = "install" ]; then
   rm -Rf glib-2.26.0
   tar xvzf ../downloads/glib-2.26.0.tar.gz
   cd glib-2.26.0/
-  ./configure --prefix="$EXTERN_DIR" && make -j4 && make install
+  patch -u gio/gdbusmessage.c ../../install_scripts/glib2.patch
+  ./configure --prefix="$EXTERN_DIR" --enable-dtrace=no && make -j4 && make install
   cd ..  
 fi
 
