@@ -13,20 +13,23 @@ local gcc = premake.tools.gcc
 
 if(_OPTIONS["platform"] == "Nao") then
   
-  if _OPTIONS["clang"] ~= nil then
+  if _OPTIONS["crosscompiler"] == "clang" then
     print("INFO: Crosscompile with CLANG")
     toolset "clang"
     
     -- speciffic options for clang
     buildoptions {
-      "-target i686-pc-linux-gnu"
+      "--target=i686-berlinunited-linux-gnu"
     }
     linkoptions {
-      "-target i686-pc-linux-gnu",
+      "--target=i686-berlinunited-linux-gnu",
+      "--gcc-toolchain=" .. crossDir,
       --"-fuse-ld=" .. COMPILER_PATH_NAO .. "/bin/i686-berlinunited-linux-gnu-ld.exe"
       "-fuse-ld=lld" -- use the native linker of clang
     }
-  else
+    premake.tools.clang.tools.ar = "llvm-ar"
+    
+  elseif _OPTIONS["crosscompiler"] == "gcc" or _OPTIONS["crosscompiler"] == nil then
     print("INFO: Crosscompile with GCC " .. version)
     
     -- reset compiler path to the cross compiler
@@ -36,6 +39,9 @@ if(_OPTIONS["platform"] == "Nao") then
     
     print("INFO: GCC path was changed for cross compiling to")
     print("> " .. crossDir)
+    
+  else
+    print("ERROR: unknown crosscompiler: " .. tostring(_OPTIONS["crosscompiler"]))
   end
   
   buildoptions {
@@ -66,8 +72,15 @@ function gcc.gettoolname(cfg, tool)
 end
 
 newoption {
-   trigger     = "clang",
-   description = "set the compiler to be clang"
+  trigger     = "crosscompiler",
+  value       = "COMPILER",
+  description = "Set the cross compiler to be used to compile for NAO.",
+  default     = "gcc",
+  allowed     = {
+    { "gcc",   "GCC 4.9.3"},
+    { "clang", "Native CLANG version."}
+  }
 }
+
 
 
