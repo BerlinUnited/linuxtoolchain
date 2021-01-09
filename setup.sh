@@ -87,6 +87,10 @@ EXTERN_PATH_NAO = nil
 -- default: os.getenv("AL_DIR")
 AL_DIR = nil
 
+if PLATFORM == "Nao" then
+  _OPTIONS["crosscompiler"] = "gcc" -- set "clang" if needed
+end
+
 function set_user_defined_paths() 
 
   -- add your additional include directories here
