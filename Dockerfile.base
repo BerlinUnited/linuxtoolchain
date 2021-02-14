@@ -7,10 +7,8 @@ RUN apt-get update -y --fix-missing \
     cmake zlib1g-dev git libreadline-dev gettext cppcheck python-pip python3-pip curl jq python3-setuptools -y
 
 RUN pip install pygments
-RUN pip3 install -U pip twine
-
-RUN pip --version
-
+RUN pip3 install -U pip
+RUN pip3 install twine
 RUN pip3 install --upgrade keyrings.alt
 
 RUN rm -rf /var/lib/apt/lists/*
