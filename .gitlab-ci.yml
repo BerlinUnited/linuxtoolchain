@@ -21,6 +21,8 @@ build_base:
   # there is a schedule that runs every week and builds the base image
   stage: build_base
   rules:
+    - changes: 
+      - Dockerfile.base
     - if: '$BUILD_BASE_IMAGE'
   script:
     - docker build -f Dockerfile.base -t $DOCKER_IMAGE:toolchain_base_image .
