@@ -19,10 +19,10 @@ if [ "$1" = "check" ]; then
   fi
 elif [ "$1" = "install" ]; then
   rm -Rf premake-5.0.0-alpha12
-  tar xvzf ../downloads/premake-5.0.0-alpha12.tar.gz
-  cd premake-5.0.0-alpha12/build/gmake.unix
-  make 
-  cp ../../bin/release/premake5 $EXTERN_DIR/bin
-  cd ../../../  
+  tar xvzf ../downloads/premake-core-master.tar.gz
+  cd premake-core-master/
+  make -f Bootstrap.mak linux
+  cp bin/release/premake5 $EXTERN_DIR/bin
+  cd ../ 
   pwd
 fi
