@@ -82,10 +82,12 @@ COMPILER_PATH_NAO = nil
 -- default: NAO_CTC .. "/extern"
 EXTERN_PATH_NAO = nil
 
-
 -- naoqi toolchain needed to compile the NaoSMAL
 -- default: os.getenv("AL_DIR")
 AL_DIR = nil
+
+-- optional: manualy enable/disable colors
+-- print_colors = true
 
 if PLATFORM == "Nao" then
   _OPTIONS["crosscompiler"] = "gcc" -- set "clang" if needed
