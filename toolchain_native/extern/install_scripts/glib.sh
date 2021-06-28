@@ -29,7 +29,9 @@ elif [ "$1" = "install" ]; then
   # Since glibc 2.28 sys/sysmacros.h can't be indirectly included thru sys/types.h anymore.
   # So to be able to compile glib-2.26 on modern linux systems gio/gdbusmessage.c need to include sys/sysmacros.h directly.
   patch -u gio/gdbusmessage.c ../../install_scripts/glib2.patch
-  ./configure --prefix="$EXTERN_DIR" --enable-dtrace=no && make -j4 && make install
+  ./configure --prefix="$EXTERN_DIR" --enable-dtrace=no 
+  make -j4 
+  make install
   cd ..  
 fi
 
