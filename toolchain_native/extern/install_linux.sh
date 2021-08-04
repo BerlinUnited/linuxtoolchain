@@ -32,12 +32,6 @@ ask_install_package()
   fi
 }
 
-if [ ! -d downloads ]; then
-  echo ".::ERROR::. no downloaded files, please execute ./download.sh or download the necessary files by hand"
-  echo ".::ERROR::. will exit"
-  exit -1
-fi
-
 # create target directories for installation
 mkdir -p "./include/sfsexp"
 mkdir -p "./lib"

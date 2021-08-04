@@ -32,7 +32,7 @@ elif [ "$1" = "install" ]; then
   -DBUILD_opencv_imgcodecs=OFF -DBUILD_opencv_photo=OFF -DBUILD_opencv_video=OFF -DBUILD_opencv_shape=OFF \
   -DBUILD_opencv_stitching=OFF -DBUILD_opencv_superres=OFF -DBUILD_opencv_ts=OFF _DBUILD_opencv_videoio=OFF \
   -DBUILD_opencv_videostab=OFF \
-  -DWITH_CUDA=OFF -DWITH_FFMPEG=OFF -DWITH_JPEG=OFF -DWITH_PNG=OFF -DWITH_OPENEXR=OFF -DWITH_TIFF=OFF \
+  -DWITH_CUDA=OFF -DWITH_FFMPEG=OFF -DWITH_JPEG=OFF -DWITH_PNG=OFF -DWITH_OPENEXR=OFF -DWITH_TIFF=OFF -DWITH_VTK=OFF\
   -DWITH_JASPER=OFF -DWITH_WEBP=OFF -DWITH_IPP=OFF ..
   make && make install
 
