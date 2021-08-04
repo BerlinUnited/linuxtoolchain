@@ -53,4 +53,4 @@ build_naoth:
   - apk add curl
   # getting docker-tag friendly version of the current branch name: replace / with underscore
   - branchname=`echo "${CI_COMMIT_REF_NAME}" | sed "s/\//_/g"`
-  - curl --request POST --form token=99cecc4a5ecf9928d287a592236580 --form ref=develop --form "variables[DOCKER_IMAGE]=$DOCKER_IMAGE:$branchname" https://scm.cms.hu-berlin.de/api/v4/projects/3384/trigger/pipeline
+  - curl --request POST --form token=99cecc4a5ecf9928d287a592236580 --form ref=develop --form "variables[TOOLCHAIN_DOCKER_IMAGE]=$DOCKER_IMAGE:$branchname" https://scm.cms.hu-berlin.de/api/v4/projects/3384/trigger/pipeline
