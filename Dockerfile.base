@@ -5,7 +5,7 @@ FROM ubuntu:18.04
 RUN apt-get update -y --fix-missing \
     && apt-get --no-install-recommends install openjdk-8-jre build-essential \
     cmake zlib1g-dev git libreadline-dev gettext cppcheck python-pip python3-pip curl jq python3-setuptools \
-    clang llvm lld wget tree pigz xxd debootstrap -y
+    clang llvm lld wget tree pigz xxd debootstrap unzip -y
 
 RUN pip install pygments
 RUN pip3 install -U pip
