@@ -22,19 +22,23 @@ elif [ "$1" = "install" ]; then
   export CMAKE_LIBRARY_PATH="$EXTERN_DIR/lib"
   export CMAKE_INCLUDE_PATH="$EXTERN_DIR/include"
   rm -Rf opencv-3.1.0
-  tar xvf ../downloads/opencv-3.1.0.tar.xz
-  cd opencv-3.1.0
+  unzip -o ../downloads/opencv-4.5.5.zip
+  cd opencv-4.5.5
   rm -Rf build
   mkdir build && cd build
-  cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX="$EXTERN_DIR" -DBUILD_opencv_apps=OFF -D BUILD_DOCS=OFF -DBUILD_TESTS=OFF -DBUILD_opencv_java=OFF \
+  cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX="$EXTERN_DIR" -DBUILD_opencv_apps=OFF -DBUILD_DOCS=OFF -DBUILD_TESTS=OFF -DBUILD_JAVA=OFF \
   -DBUILD_opencv_python2=OFF -DBUILD_opencv_python3=OFF -DBUILD_PERF_TESTS=OFF -DENABLE_PRECOMPILED_HEADERS=OFF \
-  -DBUILD_opencv_calib3d=OFF -DBUILD_opencv_features2d=OFF -DBUILD_opencv_flann=OFF -DBUILD_opencv_highgui=OFF \
+  -DBUILD_opencv_calib3d=ON -DBUILD_opencv_features2d=ON -DBUILD_opencv_flann=ON -DBUILD_opencv_highgui=OFF -DBUILD_opencv_gapi=OFF \
   -DBUILD_opencv_imgcodecs=OFF -DBUILD_opencv_photo=OFF -DBUILD_opencv_video=OFF -DBUILD_opencv_shape=OFF \
-  -DBUILD_opencv_stitching=OFF -DBUILD_opencv_superres=OFF -DBUILD_opencv_ts=OFF _DBUILD_opencv_videoio=OFF \
-  -DBUILD_opencv_videostab=OFF \
+  -DBUILD_opencv_stitching=OFF -DBUILD_opencv_superres=OFF -DBUILD_opencv_ts=OFF -DBUILD_opencv_videoio=OFF \
+  -DBUILD_opencv_videostab=OFF -DBUILD_opencv_objdetect=ON \
   -DWITH_CUDA=OFF -DWITH_FFMPEG=OFF -DWITH_JPEG=OFF -DWITH_PNG=OFF -DWITH_OPENEXR=OFF -DWITH_TIFF=OFF -DWITH_VTK=OFF\
-  -DWITH_JASPER=OFF -DWITH_WEBP=OFF -DWITH_IPP=OFF ..
+  -DWITH_JASPER=OFF -DWITH_WEBP=OFF -DWITH_IPP=OFF -DWITH_EIGEN=OFF ..
   make && make install
 
-  cd ../../
+  cd ../../../
+
+  # the code will create the includes in include/opencv4/opencv2 we have to move the opencv2 folder to include/
+  mv include/opencv4/* include/
+  rm -rf include/opencv4
 fi
