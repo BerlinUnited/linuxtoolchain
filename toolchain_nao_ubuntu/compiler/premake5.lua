@@ -48,6 +48,26 @@ function premake.tools.gcc.gettoolname(cfg, tool)
   return premake.tools.gcc.tools[tool]
 end
 
+-- BUGFIX: 
+-- /usr/lib64 is allways added to the list of paths 
+-- and there is no way to prevent it.
+-- This can make problems on some systems.
+-- So we redefine libraryDirectories without it.
+-- https://github.com/premake/premake-core/blob/ea2971dd50d048582d646d12d9e50253f6f6731c/src/tools/gcc.lua#L473
+premake.tools.gcc.libraryDirectories = {
+		architecture = {
+			x86 = function (cfg)
+				return {}
+			end,
+			x86_64 = function (cfg)
+				return {}
+			end,
+		},
+		system = {
+			wii = "-L$(LIBOGC_LIB)",
+		}
+}
+
 newoption {
   trigger     = "crosscompiler",
   value       = "COMPILER",
