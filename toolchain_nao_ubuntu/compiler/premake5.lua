@@ -1,4 +1,6 @@
 
+ROBOT_OS = "ubuntu"
+
 local crosscompiler = _OPTIONS["crosscompiler"]
 if crosscompiler == nil then
   crosscompiler = "gcc"

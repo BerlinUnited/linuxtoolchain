@@ -1,3 +1,6 @@
+
+ROBOT_OS = "naoos"
+
 --
 local linux = "i686-berlinunited-linux-gnu"
 local version = "4.9.3" 
