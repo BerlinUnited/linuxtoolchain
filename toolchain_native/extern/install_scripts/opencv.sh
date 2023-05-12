@@ -21,9 +21,10 @@ if [ "$1" = "check" ]; then
 elif [ "$1" = "install" ]; then
   export CMAKE_LIBRARY_PATH="$EXTERN_DIR/lib"
   export CMAKE_INCLUDE_PATH="$EXTERN_DIR/include"
-  rm -Rf opencv-3.1.0
-  unzip -o ../downloads/opencv-4.5.5.zip
-  cd opencv-4.5.5
+  
+  rm -rf opencv-4.7.0
+  unzip -o ../downloads/opencv-4.7.0.zip
+  cd opencv-4.7.0
   rm -Rf build
   mkdir build && cd build
   cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX="$EXTERN_DIR" -DBUILD_opencv_apps=OFF -DBUILD_DOCS=OFF -DBUILD_TESTS=OFF -DBUILD_JAVA=OFF \
