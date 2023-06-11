@@ -36,14 +36,6 @@
 #include <string>
 #include <stdexcept>
 
-#if defined(__GNUC__) || defined(__GNUG__)
-#define FDEEP_FORCE_INLINE __attribute__((always_inline)) inline
-#elif defined(_MSC_VER)
-#define FDEEP_FORCE_INLINE __forceinline
-#else
-#define FDEEP_FORCE_INLINE inline
-#endif
-
 namespace fdeep { namespace internal
 {
 
@@ -77,10 +69,18 @@ inline void assertion(bool cond, const std::string& error)
     typedef Eigen::DenseIndex EigenIndex;
 #endif
 
-typedef std::vector<float_type> float_vec;
+typedef std::vector<float_type> float_vec_unaligned;
+
+template <typename T>
+using aligned_vector = std::vector<T, Eigen::aligned_allocator<T>>;
+
+typedef aligned_vector<float_type> float_vec;
 typedef fplus::shared_ref<float_vec> shared_float_vec;
 
 using ColMajorMatrixXf = Eigen::Matrix<float_type, Eigen::Dynamic, Eigen::Dynamic, Eigen::ColMajor>;
 using RowMajorMatrixXf = Eigen::Matrix<float_type, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>;
+using ArrayXf = Eigen::Array<float_type, Eigen::Dynamic, Eigen::Dynamic>;
+using ArrayXf1D = Eigen::Array<float_type, Eigen::Dynamic, 1>;
+using MappedRowMajorMatrixXf = Eigen::Map<RowMajorMatrixXf, Eigen::Aligned>;
 
 } } // namespace fdeep, namespace internal
