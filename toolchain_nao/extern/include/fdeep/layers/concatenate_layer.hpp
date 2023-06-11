@@ -16,8 +16,8 @@ namespace fdeep { namespace internal
 class concatenate_layer : public layer
 {
 public:
-    explicit concatenate_layer(const std::string& name, std::int32_t keras_axis)
-        : layer(name), axis_(keras_axis_to_fdeep_axis(keras_axis))
+    explicit concatenate_layer(const std::string& name, std::int32_t axis)
+        : layer(name), axis_(axis)
     {
     }
 protected:
@@ -35,9 +35,9 @@ protected:
             ") for concatenate layer.");
         return 0;
     }
-    tensor5s apply_impl(const tensor5s& input) const override
+    tensors apply_impl(const tensors& input) const override
     {
-        return {concatenate_tensor5s(input, axis_)};
+        return {concatenate_tensors(input, axis_)};
     }
     std::int32_t axis_;
 };

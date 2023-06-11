@@ -22,39 +22,34 @@ class upsampling_2d_layer : public layer
 {
 public:
     explicit upsampling_2d_layer(const std::string& name,
-        const shape2& scale_factor) :
+        const shape2& scale_factor, const std::string& interpolation) :
     layer(name),
-    scale_factor_(scale_factor)
+    scale_factor_(scale_factor),
+    interpolation_(interpolation)
     {
     }
 protected:
-    tensor5s apply_impl(const tensor5s& inputs) const override final
+    tensors apply_impl(const tensors& inputs) const override final
     {
-        assertion(inputs.size() == 1, "invalid number of inputs tensors");
-        const auto& input = inputs.front();
-        return {upsampling2d(input)};
+        const auto& input = single_tensor_from_tensors(inputs);
+        if (interpolation_ == "nearest")
+        {
+            return {resize2d_nearest(
+                input, shape2(scale_factor_.height_ * input.shape().height_, scale_factor_.width_ * input.shape().width_))};
+        }
+        else if (interpolation_ == "bilinear")
+        {
+            return {resize2d_bilinear(
+                input, shape2(scale_factor_.height_ * input.shape().height_, scale_factor_.width_ * input.shape().width_))};
+        }
+        else
+        {
+            raise_error("Invalid interpolation method: " + interpolation_);
+            return inputs;
+        }
     }
     shape2 scale_factor_;
-    tensor5 upsampling2d(const tensor5& in_vol) const
-    {
-        tensor5 out_vol(shape5(1, 1,
-            in_vol.shape().height_ * scale_factor_.height_,
-            in_vol.shape().width_ * scale_factor_.width_,
-            in_vol.shape().depth_), 0);
-        for (std::size_t z = 0; z < in_vol.shape().depth_; ++z)
-        {
-            for (std::size_t y = 0; y < out_vol.shape().height_; ++y)
-            {
-                std::size_t y_in = y / scale_factor_.height_;
-                for (std::size_t x = 0; x < out_vol.shape().width_; ++x)
-                {
-                    std::size_t x_in = x / scale_factor_.width_;
-                    out_vol.set(0, 0, y, x, z, in_vol.get(0, 0, y_in, x_in, z));
-                }
-            }
-        }
-        return out_vol;
-    }
+    std::string interpolation_;
 };
 
 } } // namespace fdeep, namespace internal
