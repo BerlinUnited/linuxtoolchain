@@ -22,21 +22,17 @@ namespace fdeep { namespace internal
 class global_pooling_layer : public layer
 {
 public:
-    explicit global_pooling_layer(const std::string& name, bool channels_first) :
-        layer(name),
-        channels_first_(channels_first)
+    explicit global_pooling_layer(const std::string& name) :
+        layer(name)
     {
     }
 protected:
-    tensor5s apply_impl(const tensor5s& inputs) const override final
+    tensors apply_impl(const tensors& inputs) const override final
     {
-        assertion(inputs.size() == 1, "invalid number of input tensors");
-        const auto& input = inputs.front();
+        const auto& input = single_tensor_from_tensors(inputs);
         return {pool(input)};
     }
-    virtual tensor5 pool(const tensor5& input) const = 0;
-
-    bool channels_first_;
+    virtual tensor pool(const tensor& input) const = 0;
 };
 
 } } // namespace fdeep, namespace internal

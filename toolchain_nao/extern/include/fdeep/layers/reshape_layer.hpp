@@ -18,19 +18,20 @@ class reshape_layer : public layer
 {
 public:
     explicit reshape_layer(const std::string& name,
-        const std::vector<int>& target_shape)
+        const tensor_shape_variable& target_shape)
         : layer(name),
         target_shape_(target_shape)
     {
     }
 protected:
-    tensor5s apply_impl(const tensor5s& input) const override
+    tensors apply_impl(const tensors& inputs) const override
     {
-        assertion(input.size() == 1,
-            "reshape layer needs exactly one input tensor");
-        return {reshape_tensor5(input[0], target_shape_)};
+        const auto& input = single_tensor_from_tensors(inputs);
+        const auto fixed_target_shape = derive_fixed_tensor_shape(
+            input.shape().volume(), target_shape_);
+        return {tensor(fixed_target_shape, input.as_vector())};
     }
-    std::vector<int> target_shape_;
+    tensor_shape_variable target_shape_;
 };
 
 } } // namespace fdeep, namespace internal
