@@ -27,7 +27,7 @@ elif [ "$1" = "install" ]; then
   cd opencv-4.7.0
   rm -Rf build
   mkdir build && cd build
-  cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX="$EXTERN_DIR" -DBUILD_opencv_apps=OFF -DBUILD_DOCS=OFF -DBUILD_TESTS=OFF -DBUILD_JAVA=OFF \
+  cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX="$EXTERN_DIR" -DCMAKE_INSTALL_LIBDIR="lib" -DBUILD_opencv_apps=OFF -DBUILD_DOCS=OFF -DBUILD_TESTS=OFF -DBUILD_JAVA=OFF \
   -DBUILD_opencv_python2=OFF -DBUILD_opencv_python3=OFF -DBUILD_PERF_TESTS=OFF -DENABLE_PRECOMPILED_HEADERS=OFF \
   -DBUILD_opencv_calib3d=ON -DBUILD_opencv_features2d=ON -DBUILD_opencv_flann=ON -DBUILD_opencv_highgui=OFF -DBUILD_opencv_gapi=OFF \
   -DBUILD_opencv_imgcodecs=OFF -DBUILD_opencv_photo=OFF -DBUILD_opencv_video=OFF -DBUILD_opencv_shape=OFF \
@@ -40,6 +40,7 @@ elif [ "$1" = "install" ]; then
   cd ../../../
 
   # the code will create the includes in include/opencv4/opencv2 we have to move the opencv2 folder to include/
+  rm -r include/opencv2/
   mv include/opencv4/* include/
   rm -rf include/opencv4
 fi
