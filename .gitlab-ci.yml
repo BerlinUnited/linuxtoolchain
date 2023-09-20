@@ -17,7 +17,7 @@ variables:
     DOCKER_TLS_CERTDIR: ""
     DOCKER_IMAGE: scm.cms.hu-berlin.de:4567/berlinunited/tools/linuxtoolchain
 
-build_base:
+build_base_image:
   # there is a schedule that runs every week and builds the base image
   stage: build_base
   rules:
