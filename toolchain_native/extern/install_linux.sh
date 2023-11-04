@@ -71,11 +71,19 @@ else
     # actually install the packages
     for PKG in $PACKAGESTOINSTALL
     do
-       echo "==========================="  
-       echo "Installing \"$PKG\""
-       echo "==========================="
-        . ../install_scripts/$PKG.sh install
-        cd $CWD # make sure, the script didn't change the directory
+      echo "==========================="  
+      echo "Installing \"$PKG\""
+      echo "==========================="
+      . ../install_scripts/$PKG.sh install
+
+      if [ $? -ne 0 ]; then
+        echo "================================"
+        echo "Installation of \"$PKG\" failed "
+        echo "================================"
+        exit 1
+      fi
+
+      cd $CWD # make sure, the script didn't change the directory
     done
   fi
 fi

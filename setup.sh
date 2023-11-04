@@ -117,6 +117,13 @@ cd toolchain_native/extern/
 chmod u+x install_linux.sh
 ./install_linux.sh
 
+if [ $? -ne 0 ]; then
+	echo "---------------------------------------------------"
+	echo "- ./install_linux.sh did not finish successfully! -"
+	echo "---------------------------------------------------"
+	exit 1
+fi
+
 echo "-------------------------------------------------------------------------------------------"
 echo "- If paths were appended to .profile a restart is needed in order for the changes to work -"
 echo "-------------------------------------------------------------------------------------------"
