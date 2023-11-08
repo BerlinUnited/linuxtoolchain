@@ -22,6 +22,7 @@ elif [ "$1" = "install" ]; then
   tar xvzf ../downloads/lua-5.3.4.tar.gz
   cp -R ../downloads/luabridge $EXTERN_DIR/include/luabridge
   cd lua-5.3.4
+  make clean
   make linux
 
   mkdir -p $EXTERN_DIR/include/lua

@@ -23,7 +23,7 @@ elif [ "$1" = "install" ]; then
   export CMAKE_INCLUDE_PATH="$EXTERN_DIR/include"
   
   rm -rf opencv-4.7.0
-  unzip -o ../downloads/opencv-4.7.0.zip
+  unzip -qq -o ../downloads/opencv-4.7.0.zip
   cd opencv-4.7.0
   rm -Rf build
   mkdir build && cd build
