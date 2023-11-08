@@ -40,7 +40,7 @@ elif [ "$1" = "install" ]; then
   cd ../../../
 
   # the code will create the includes in include/opencv4/opencv2 we have to move the opencv2 folder to include/
-  rm -r include/opencv2/
+  rm -rf include/opencv2/
   mv include/opencv4/* include/
   rm -rf include/opencv4
 fi
