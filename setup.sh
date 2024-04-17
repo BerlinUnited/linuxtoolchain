@@ -90,7 +90,7 @@ AL_DIR = nil
 -- print_colors = true
 
 if PLATFORM == "Nao" then
-  _OPTIONS["crosscompiler"] = "gcc" -- set "clang" if needed
+  _OPTIONS["crosscompiler"] = "clang" -- set "gcc" for legacy compilation
 end
 
 function set_user_defined_paths() 
