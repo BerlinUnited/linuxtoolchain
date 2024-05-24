@@ -18,8 +18,9 @@ if [ "$1" = "check" ]; then
     exit 1
   fi
 elif [ "$1" = "install" ]; then
+  mkdir -p $EXTERN_DIR/include/Eigen/
   rm -Rf eigen-eigen-5a0156e40feb
   tar xvjf ../downloads/eigen-eigen-5a0156e40feb.tar.bz2
-  cp -R eigen-eigen-5a0156e40feb/Eigen/ $EXTERN_DIR/include/Eigen/
+  cp -R eigen-eigen-5a0156e40feb/Eigen/* $EXTERN_DIR/include/Eigen/
 fi
 
