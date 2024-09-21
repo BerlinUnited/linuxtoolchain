@@ -27,7 +27,7 @@ elif [ "$1" = "install" ]; then
   mkdir -p tf_build && cd tf_build
   
   cmake -DCMAKE_BUILD_TYPE=RELEASE ../tensorflow-2.15.0/tensorflow/lite/c
-  cmake --build . -j 4
+  cmake --build . -j 4 --config Release
   
   # Note install does not work for some weird reason with the flag -DTFLITE_ENABLE_INSTALL=ON , so we copy everything manually
   # copy the binary from tf_build to the extern/lib folder
