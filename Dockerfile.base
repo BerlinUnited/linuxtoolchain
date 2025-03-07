@@ -5,11 +5,11 @@ FROM ubuntu:24.04
 RUN apt-get update -y --fix-missing \
     && apt-get --no-install-recommends install openjdk-8-jre build-essential \
     cmake zlib1g-dev git libreadline-dev gettext cppcheck python3-pip curl jq \
-    clang llvm lld wget tree pigz xxd debootstrap unzip gpg rsync -y
+    clang llvm lld wget tree pigz xxd debootstrap unzip gpg rsync uuid-dev -y
 
-RUN python3 -m pip install pygments
+RUN python3 -m pip install pygments --break-system-packages
 #RUN pip3 install -U pip
-RUN python3 -m pip install twine
+RUN python3 -m pip install twine --break-system-packages
 #RUN pip3 install --upgrade keyrings.alt
 
 RUN rm -rf /var/lib/apt/lists/*
