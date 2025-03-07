@@ -18,9 +18,9 @@ if [ "$1" = "check" ]; then
     exit 1
   fi
 elif [ "$1" = "install" ]; then
-  rm -Rf premake-core-master
-  unzip ../downloads/premake-core-master.zip
-  cd premake-core-master/
+  rm -Rf premake-5.0.0-beta5-src
+  unzip ../downloads/premake-5.0.0-beta5-src.zip
+  cd premake-5.0.0-beta5-src/
   make -f Bootstrap.mak linux
   cp bin/release/premake5 $EXTERN_DIR/bin
   cd ../ 
