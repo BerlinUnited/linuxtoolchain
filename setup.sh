@@ -14,7 +14,7 @@ if [[ -z "${NAOTH_TOOLCHAIN_PATH}" ]]; then
 
     NAOTH_TOOLCHAIN_PATH=`pwd`
 
-	echo -n "Do you want append NaoTH environment variables to ~/.profile? $DEFSTRING : "
+	echo -n "Do you want append NaoTH environment variables to ~/.profile and ~/.bashrc? $DEFSTRING : "
 	read ANSWER
 
 	# set default answer
@@ -24,16 +24,20 @@ if [[ -z "${NAOTH_TOOLCHAIN_PATH}" ]]; then
 
 	if [ "$ANSWER" = "y" -o "$ANSWER" = "Y" ]
 	then
-	  echo "------------------------"
-	  echo "- extending ~/.profile -"
-	  echo "------------------------"
+	  echo "--------------------------------------"
+	  echo "- extending ~/.profile and ~/.bashrc -"
+	  echo "--------------------------------------"
 
 	  # force new line
 	  echo  >> ~/.profile
+	  echo  >> ~/.bashrc
 	  #
 	  echo "# NAOTH Toolchain" >> ~/.profile
+	  echo "# NAOTH Toolchain" >> ~/.bashrc
 	  echo "$PROFILE_NAOTH_TOOLCHAIN_STRING" >> ~/.profile
+	  echo "$PROFILE_NAOTH_TOOLCHAIN_STRING" >> ~/.bashrc
 	  echo "[[ -f $NAOTH_TOOLCHAIN_PATH/.naoth.profile ]] && . $NAOTH_TOOLCHAIN_PATH/.naoth.profile" >> ~/.profile
+	  echo "[[ -f $NAOTH_TOOLCHAIN_PATH/.naoth.profile ]] && . $NAOTH_TOOLCHAIN_PATH/.naoth.profile" >> ~/.bashrc
 	fi
 elif [[ "$PROFILE_NAOTH_TOOLCHAIN_STRING" != "$PROFILE_NAOTH_TOOLCHAIN_CURRENT" ]]; then
 
@@ -48,7 +52,8 @@ elif [[ "$PROFILE_NAOTH_TOOLCHAIN_STRING" != "$PROFILE_NAOTH_TOOLCHAIN_CURRENT" 
 	if [ "$ANSWER" = "y" -o "$ANSWER" = "Y" ]
 	then
 		# replace toolchain path and using | as sed delimiter
-		sed -i "s|$PROFILE_NAOTH_TOOLCHAIN_CURRENT|$PROFILE_NAOTH_TOOLCHAIN_STRING|g" ~/.profile
+		sed -i "s|$PROFILE_NAOTH_TOOLCHAIN_CURRENT|$PROFILE_NAOTH_TOOLCHAIN_STRING|g" "~/.profile"
+		sed -i "s|$PROFILE_NAOTH_TOOLCHAIN_CURRENT|$PROFILE_NAOTH_TOOLCHAIN_STRING|g" "~/.bashrc"
 	fi
 else
   echo "NaoTH environment variables already defined."
