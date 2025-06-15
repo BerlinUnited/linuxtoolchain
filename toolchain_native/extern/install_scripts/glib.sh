@@ -31,6 +31,7 @@ elif [ "$1" = "install" ]; then
   patch -u gio/gdbusmessage.c ../../install_scripts/glib2.patch
   ./configure --prefix="$EXTERN_DIR" --enable-dtrace=no 
   make -j4 
+  make
   make install
   cd ..  
 fi
