@@ -98,6 +98,13 @@ if PLATFORM == "Nao" then
   _OPTIONS["crosscompiler"] = "clang" -- set "gcc" for legacy compilation
 end
 
+
+-- optional: set the path to clang compilers, e.g. when using older compilers on
+--           systems which ship modern compilers by default, which are currently
+--           incompatible with the naoth codebase (e.g. clang 19, 20)
+-- premake.tools.clang.tools.cc = "<path to clang>"
+-- premake.tools.clang.tools.cxx = "<path to clang++>"
+
 function set_user_defined_paths() 
 
   -- add your additional include directories here
