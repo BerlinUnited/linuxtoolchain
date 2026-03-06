@@ -21,7 +21,7 @@ elif [ "$1" = "install" ]; then
   rm -Rf sexpr_1.2.1
   tar xvzf ../downloads/sexpr_1.2.1.tar.gz
   cd sexpr_1.2.1/
-  ./configure && make
+  ./configure && make -C src/
   
   # create the dirs if they are not there
   mkdir -p "$EXTERN_DIR/include/sfsexp"
