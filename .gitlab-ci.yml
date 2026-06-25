@@ -22,8 +22,6 @@ variables:
 build_base_image:
   # there is a schedule that runs every week and builds the base image
   stage: build_base
-  tags: 
-   - ball_server
   rules:
     - changes: 
       - Dockerfile.base
@@ -34,8 +32,6 @@ build_base_image:
 
 build_and_deploy:
   stage: build_libs
-  tags: 
-   - ball_server
   rules:
      - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master"'
      - if: '$CI_PIPELINE_SOURCE == "web"'
@@ -51,8 +47,6 @@ build_and_deploy:
 
 build_naoth:
   stage: test
-  tags: 
-   - ball_server
   rules:
      - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master"'
      - if: '$CI_PIPELINE_SOURCE == "web"'
